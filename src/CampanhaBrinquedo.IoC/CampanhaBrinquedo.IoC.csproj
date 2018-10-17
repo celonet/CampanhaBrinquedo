@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="7.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="2.1.1" />
+    <PackageReference Include="MongoDB.Driver.Core" Version="2.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CampanhaBrinquedo.CrossCutting\CampanhaBrinquedo.CrossCutting.csproj" />
+    <ProjectReference Include="..\CampanhaBrinquedo.Data.MongoDb\CampanhaBrinquedo.Data.MongoDb.csproj" />
+    <ProjectReference Include="..\CampanhaBrinquedo.Domain\CampanhaBrinquedo.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
