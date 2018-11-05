@@ -23,19 +23,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CampanhaBrinquedo.Applicati
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CampanhaBrinquedo.IoC", "src\CampanhaBrinquedo.IoC\CampanhaBrinquedo.IoC.csproj", "{370FB023-7FBC-4FB8-A89C-F1F40E49C1CD}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CampanhaBriquedo.CrossCutting", "src\CampanhaBriquedo.CrossCutting\CampanhaBriquedo.CrossCutting.csproj", "{2ED1C59F-00A5-4E91-9C20-D6334CAB9198}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CampanhaBrinquedo.Api", "src\CampanhaBrinquedo.Api\CampanhaBrinquedo.Api.csproj", "{83E1EF8B-DF76-415D-9B89-789C55B61081}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CampanhaBrinquedo.Data.MongoDb", "src\CampanhaBrinquedo.Data.MongoDb\CampanhaBrinquedo.Data.MongoDb.csproj", "{CCDC8E22-0974-420F-8A2E-811ABDD43A28}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution Files", "{82610BE3-E84E-44EF-88E0-D07D6DD19D13}"
-	ProjectSection(SolutionItems) = preProject
-		coverage.cmd = coverage.cmd
-		docker-compose.yml = docker-compose.yml
-		Dockerfile = Dockerfile
-		sonar.cmd = sonar.cmd
-	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CampanhaBrinquedo.CrossCutting", "src\CampanhaBrinquedo.CrossCutting\CampanhaBrinquedo.CrossCutting.csproj", "{2F551C45-011A-45CA-A7DA-5CAE9643D868}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Transporte.Full", "src\Transporte.Full\Transporte.Full.csproj", "{ADD28BF3-E894-44FF-B30F-90E6A2FF296A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +55,10 @@ Global
 		{370FB023-7FBC-4FB8-A89C-F1F40E49C1CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{370FB023-7FBC-4FB8-A89C-F1F40E49C1CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{370FB023-7FBC-4FB8-A89C-F1F40E49C1CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2ED1C59F-00A5-4E91-9C20-D6334CAB9198}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2ED1C59F-00A5-4E91-9C20-D6334CAB9198}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2ED1C59F-00A5-4E91-9C20-D6334CAB9198}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2ED1C59F-00A5-4E91-9C20-D6334CAB9198}.Release|Any CPU.Build.0 = Release|Any CPU
 		{83E1EF8B-DF76-415D-9B89-789C55B61081}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{83E1EF8B-DF76-415D-9B89-789C55B61081}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83E1EF8B-DF76-415D-9B89-789C55B61081}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -67,10 +67,10 @@ Global
 		{CCDC8E22-0974-420F-8A2E-811ABDD43A28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCDC8E22-0974-420F-8A2E-811ABDD43A28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCDC8E22-0974-420F-8A2E-811ABDD43A28}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2F551C45-011A-45CA-A7DA-5CAE9643D868}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2F551C45-011A-45CA-A7DA-5CAE9643D868}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2F551C45-011A-45CA-A7DA-5CAE9643D868}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2F551C45-011A-45CA-A7DA-5CAE9643D868}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADD28BF3-E894-44FF-B30F-90E6A2FF296A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADD28BF3-E894-44FF-B30F-90E6A2FF296A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADD28BF3-E894-44FF-B30F-90E6A2FF296A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADD28BF3-E894-44FF-B30F-90E6A2FF296A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,9 +84,10 @@ Global
 		{4DC03B15-B84E-46FA-99A4-2590E4BDFAD6} = {A7E0146E-37E1-4CEE-817B-0E6C284A4242}
 		{528DC9FB-B623-4B8E-8AA3-9171A7F73E69} = {4DC03B15-B84E-46FA-99A4-2590E4BDFAD6}
 		{370FB023-7FBC-4FB8-A89C-F1F40E49C1CD} = {714EA5C3-0232-41E1-838E-21EAFBD40578}
+		{2ED1C59F-00A5-4E91-9C20-D6334CAB9198} = {714EA5C3-0232-41E1-838E-21EAFBD40578}
 		{83E1EF8B-DF76-415D-9B89-789C55B61081} = {92149CA9-2808-44CA-8C7E-6A14D5F42168}
 		{CCDC8E22-0974-420F-8A2E-811ABDD43A28} = {714EA5C3-0232-41E1-838E-21EAFBD40578}
-		{2F551C45-011A-45CA-A7DA-5CAE9643D868} = {714EA5C3-0232-41E1-838E-21EAFBD40578}
+		{ADD28BF3-E894-44FF-B30F-90E6A2FF296A} = {714EA5C3-0232-41E1-838E-21EAFBD40578}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6B02538A-B3F3-45CF-A1E8-F3ABE6E540C8}

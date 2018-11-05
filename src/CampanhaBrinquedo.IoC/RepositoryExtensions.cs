@@ -1,4 +1,4 @@
-﻿using Campanhabrinquedo.Data.MongoDb.Repositories;
+﻿using campanhabrinquedo.repository.Repositories;
 using CampanhaBrinquedo.Domain.Interfaces;
 using CampanhaBrinquedo.Domain.Repositories;
 using Microsoft.Extensions.DependencyInjection;

@@ -11,12 +11,14 @@ namespace CampanhaBrinquedo.Domain.Validators
                 .NotEmpty().WithMessage("Nome obrigatório!");
             RuleFor(crianca => crianca.Age)
                 .NotEmpty().WithMessage("Idade Obrigatória!");
-            RuleFor(crianca => crianca.Clothing)
+            RuleFor(crianca => crianca.Clothings)
                 .NotEmpty().WithMessage("Tamanho de roupa obrigatório!");
-            RuleForEach(crianca => crianca.Communities)
-                .SetValidator(new CommunityValidator());
-            RuleForEach(crianca => crianca.Responsiblies)
-                .SetValidator(new ResponsibleValidator());
+            RuleFor(crianca => crianca.Communities)
+                .NotNull()
+                .SetCollectionValidator(new CommunityValidator());
+            RuleFor(crianca => crianca.Responsiblies)
+                .NotNull()
+                .SetCollectionValidator(new ResponsibleValidator());
         }
     }
 }

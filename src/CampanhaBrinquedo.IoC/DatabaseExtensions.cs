@@ -1,5 +1,5 @@
 ﻿using Campanhabrinquedo.Data.MongoDb;
-using CampanhaBrinquedo.CrossCutting;
+using CampanhaBriquedo.CrossCutting.Options;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

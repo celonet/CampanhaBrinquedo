@@ -1,5 +1,5 @@
-using System;
 using CampanhaBrinquedo.Domain.Entities.Campaign.State;
+using System;
 
 namespace CampanhaBrinquedo.Domain.Entities.Campaign
 {
@@ -14,37 +14,37 @@ namespace CampanhaBrinquedo.Domain.Entities.Campaign
 
         public Campaign(int ano, string descricao)
         {
-            this.Id = Guid.NewGuid();
-            this.Year = ano;
-            this.Description = descricao;
-            this.ChildrensQty = 0;
-            this.State = new NotStarted();
+            Id = Guid.NewGuid();
+            Year = ano;
+            Description = descricao;
+            ChildrensQty = 0;
+            State = new NotStarted();
         }
 
         public Campaign(int ano, string descricao, int qtdeCriancas)
         {
-            this.Id = Guid.NewGuid();
-            this.Year = ano;
-            this.Description = descricao;
-            this.ChildrensQty = qtdeCriancas;
-            this.State = new NotStarted();
+            Id = Guid.NewGuid();
+            Year = ano;
+            Description = descricao;
+            ChildrensQty = qtdeCriancas;
+            State = new NotStarted();
         }
 
         public Campaign(Guid id, int ano, string descricao, int qtdeCriancas, ICampaignState state)
         {
-            this.Id = id;
-            this.Year = ano;
-            this.Description = descricao;
-            this.ChildrensQty = qtdeCriancas;
-            this.State = state;
+            Id = id;
+            Year = ano;
+            Description = descricao;
+            ChildrensQty = qtdeCriancas;
+            State = state;
         }
 
-        public void IncreasesNumberOfChildren() => this.ChildrensQty++;
+        public void IncreasesNumberOfChildren() => ChildrensQty++;
 
         public void Open(User.User user) => State.Open(this, user);
 
-        public void Close(User.User user) => this.State.Close(this, user);
+        public void Close(User.User user) => State.Close(this, user);
 
-        public void Reopen(User.User user) => this.State.Reopen(this, user);
+        public void Reopen(User.User user) => State.Reopen(this, user);
     }
 }

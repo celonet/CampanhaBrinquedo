@@ -1,63 +1,56 @@
-﻿using System;
+﻿using Campanhabrinquedo.IoC;
+using CampanhaBrinquedo.Data.MongoDb.Factories;
+using CampanhaBrinquedo.Domain.Entities;
+using CampanhaBrinquedo.Domain.Interfaces;
+using CampanhaBriquedo.CrossCutting.Options;
+using Microsoft.Extensions.Options;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Conventions;
+using MongoDB.Driver;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using CampanhaBrinquedo.Domain.Entities;
-using CampanhaBrinquedo.Domain.Interfaces;
 
-namespace Campanhabrinquedo.Data.MongoDb.Repositories
+namespace campanhabrinquedo.repository.Repositories
 {
     public class Repository<T> : IRepository<T> where T : EntityBase
     {
+        private readonly IMongoDatabase _database;
+        private readonly string _collectionName;
 
-        public Repository()
+        public Repository(
+            IDatabaseFactory databaseFactory, 
+            IOptions<MongoOptions> mongoOptions, 
+            string collection
+        )
         {
-            
+            _database = databaseFactory.Get(mongoOptions);
+            _collectionName = collection;
         }
 
-        public virtual void Create(T entitie)
-        {
-            
-        }
+        private IMongoCollection<T> Collection
+            => _database.GetCollection<T>(_collectionName);
 
-        public void Delete(Guid id)
-        {
-            
-        }
+        public virtual void Create(T entity) => Collection.InsertOne(entity);
 
-        public T FindByExpression(Func<T, bool> expression)
-        {
-            return null;
-        }
+        public void Delete(Guid id) => Collection.DeleteOne(_ => _.Id == id);
 
-        public Task<T> FindByExpressionAsync(Expression<Func<T, bool>> expression)
-        {
-            return null;
-        }
+        public void Update(T entity) => Collection.ReplaceOne(_ => _.Id == entity.Id, entity);
 
-        public T FindById(Guid id)
-        {
-            return null;
-        }
+        public async Task CreateAsync(T entity) => await Collection.InsertOneAsync(entity);
 
-        public IQueryable<T> List()
-        {
-            return null;
-        }
+        public async Task<IEnumerable<T>> List() => await Collection.AsQueryable().ToListAsync();
 
-        public IQueryable<T> List(Func<T, bool> expression)
-        {
-            return null;
-        }
+        public async Task<IEnumerable<T>> List(Expression<Func<T, bool>> expression) => await Collection.Find(expression).ToListAsync();
 
-        public void Update(T entitie)
-        {
-            
-        }
+        public async Task<T> FindById(Guid id) => await Collection.Find(_ => _.Id == id).FirstOrDefaultAsync();
 
-        public void Dispose()
-        {
-            
-        }
+        public async Task<T> FindByExpression(Expression<Func<T, bool>> expression) => await Collection.Find(expression).FirstOrDefaultAsync();
+
+        public async Task UpdateAsync(T entity) => await Collection.ReplaceOneAsync(_ => _.Id == entity.Id, entity);
+
+        public async Task DeleteAsync(Guid id) => await Collection.DeleteOneAsync(_ => _.Id == id);
     }
 }
