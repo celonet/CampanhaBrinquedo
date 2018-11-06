@@ -13,7 +13,6 @@ namespace CampanhaBrinquedo.Data.MongoDb.Mappings
                 cm.AutoMap();
                 cm.MapMember(c => c.Gender).SetSerializer(new EnumSerializer<Gender>(BsonType.String));
                 cm.UnmapMember(c => c.Campaigns);
-                //cm.UnmapMember(c => c.Printed);
             });
         }
     }

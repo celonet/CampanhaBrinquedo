@@ -10,7 +10,7 @@ namespace CampanhaBrinquedo.Api.Controllers
     [ApiController]
     public class ChildController : ControllerBase
     {
-        private IChildRepository _repository;
+        private readonly IChildRepository _repository;
 
         public ChildController(IChildRepository repository) => _repository = repository;
 

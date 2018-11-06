@@ -1,6 +1,6 @@
-﻿using MongoDB.Bson;
+﻿using System.Collections.Generic;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Conventions;
-using System.Collections.Generic;
 
 namespace Campanhabrinquedo.IoC
 {

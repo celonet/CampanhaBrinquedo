@@ -1,4 +1,5 @@
-﻿using Campanhabrinquedo.IoC;
+﻿using System.Diagnostics.CodeAnalysis;
+using Campanhabrinquedo.IoC;
 using CampanhaBrinquedo.IoC;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Logging;
 
 namespace CampanhaBrinquedo.Api
 {
+    [ExcludeFromCodeCoverage]
     public class Startup
     {
         public IConfigurationRoot Configuration { get; }

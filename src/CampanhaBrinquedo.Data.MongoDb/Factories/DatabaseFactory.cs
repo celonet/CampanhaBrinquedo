@@ -8,7 +8,6 @@ using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Bson.Serialization.IdGenerators;
 using MongoDB.Driver;
 using System;
-using System.Collections.Generic;
 
 namespace CampanhaBrinquedo.Data.MongoDb.Factories
 {
@@ -17,10 +16,7 @@ namespace CampanhaBrinquedo.Data.MongoDb.Factories
     {
         private readonly IServiceProvider _serviceProvider;
 
-        public DatabaseFactory(IServiceProvider serviceProvider)
-        {
-            _serviceProvider = serviceProvider;
-        }
+        public DatabaseFactory(IServiceProvider serviceProvider) => _serviceProvider = serviceProvider;
 
         public IMongoDatabase Get(IOptions<MongoOptions> mongoOptions)
         {
