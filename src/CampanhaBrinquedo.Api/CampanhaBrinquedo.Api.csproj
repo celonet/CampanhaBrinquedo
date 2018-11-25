@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
@@ -19,11 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CampanhaBrinquedo.Application\CampanhaBrinquedo.Application.csproj" />
     <ProjectReference Include="..\CampanhaBrinquedo.Data.MongoDb\CampanhaBrinquedo.Data.MongoDb.csproj" />
-    <ProjectReference Include="..\CampanhaBrinquedo.Domain\CampanhaBrinquedo.Domain.csproj" />
     <ProjectReference Include="..\CampanhaBrinquedo.IoC\CampanhaBrinquedo.IoC.csproj" />
-    <ProjectReference Include="..\CampanhaBriquedo.CrossCutting\CampanhaBriquedo.CrossCutting.csproj" />
   </ItemGroup>
 
 </Project>

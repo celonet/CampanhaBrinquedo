@@ -15,6 +15,10 @@ namespace CampanhaBrinquedo.Api.Controllers
         public CampaignController(ICampaignRepository repository) => _repository = repository;
 
         [HttpGet]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(500)]
         public async Task<IActionResult> Get()
         {
             var campaigns = await _repository.List();
@@ -22,6 +26,9 @@ namespace CampanhaBrinquedo.Api.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(500)]
         public async Task<IActionResult> Post([FromBody]Campaign entity)
         {
             await _repository.CreateAsync(entity);
@@ -29,6 +36,9 @@ namespace CampanhaBrinquedo.Api.Controllers
         }
 
         [HttpPut]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(500)]
         public async Task<IActionResult> Put([FromBody]Campaign entity)
         {
             await _repository.UpdateAsync(entity);
@@ -36,6 +46,9 @@ namespace CampanhaBrinquedo.Api.Controllers
         }
 
         [HttpDelete]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(500)]
         public async Task<IActionResult> Delete(Guid id)
         {
             await _repository.DeleteAsync(id);

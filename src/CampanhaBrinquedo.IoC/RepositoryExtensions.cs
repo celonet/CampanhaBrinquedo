@@ -1,4 +1,4 @@
-﻿using campanhabrinquedo.repository.Repositories;
+﻿using Campanhabrinquedo.Repository.Repositories;
 using CampanhaBrinquedo.Domain.Interfaces;
 using CampanhaBrinquedo.Domain.Repositories;
 using Microsoft.Extensions.DependencyInjection;

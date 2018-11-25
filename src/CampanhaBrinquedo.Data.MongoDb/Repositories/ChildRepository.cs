@@ -4,7 +4,7 @@ using CampanhaBrinquedo.Domain.Repositories;
 using CampanhaBriquedo.CrossCutting.Options;
 using Microsoft.Extensions.Options;
 
-namespace campanhabrinquedo.repository.Repositories
+namespace Campanhabrinquedo.Repository.Repositories
 {
     public class ChildRepository : Repository<Child>, IChildRepository
     {
