@@ -1,11 +1,8 @@
-﻿using Campanhabrinquedo.IoC;
-using CampanhaBrinquedo.Data.MongoDb.Factories;
+﻿using CampanhaBrinquedo.Data.MongoDb.Factories;
 using CampanhaBrinquedo.Domain.Entities;
 using CampanhaBrinquedo.Domain.Interfaces;
 using CampanhaBriquedo.CrossCutting.Options;
 using Microsoft.Extensions.Options;
-using MongoDB.Bson.Serialization;
-using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;

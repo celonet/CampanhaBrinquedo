@@ -11,10 +11,7 @@ namespace CampanhaBrinquedo.Test.Application.Entities
     {
         private readonly User _user;
 
-        public CampaignTest()
-        {
-            _user = new User("Test", "test@test.com", "123456");
-        }
+        public CampaignTest() => _user = new User("Test", "test@test.com", "123456");
 
         [Fact]
         public void  IncreasesNumberOfChildren_()
@@ -61,7 +58,6 @@ namespace CampanhaBrinquedo.Test.Application.Entities
             campaign.State.Should().NotBeOfType<Open>();
             campaign.State.Should().NotBeOfType<Closed>();
             campaign.State.Should().BeOfType<Reopened>();
-
         }
     }
 }

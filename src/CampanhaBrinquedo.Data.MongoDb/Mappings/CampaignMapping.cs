@@ -11,7 +11,6 @@ namespace CampanhaBrinquedo.Data.MongoDb.Mappings
             {
                 cm.AutoMap();
                 cm.UnmapMember(c => c.State);
-                //.SetSerializer(new EnumSerializer<ICampaignState>(BsonType.String));
             });
         }
     }

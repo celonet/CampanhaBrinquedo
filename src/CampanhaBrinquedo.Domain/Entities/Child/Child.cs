@@ -18,51 +18,55 @@ namespace CampanhaBrinquedo.Domain.Entities.Child
 
         protected Child() { }
 
-        public Child(string name, IList<Age> ages, IList<Clothing> clothings, Gender gender, IList<Community> communities, IList<Responsible> responsiblies, IList<Campaign.Campaign> campaigns, IList<Printed> printed)
+        public Child(
+            string name, 
+            IList<Age> ages, 
+            IList<Clothing> clothings, 
+            IList<Community> communities,
+            IList<GodFather> godfathers,
+            IList<Responsible> responsiblies, 
+            IList<Campaign.Campaign> campaigns, 
+            IList<Printed> printed,
+            Gender gender,
+            bool pcd)
         {
             Id = Guid.NewGuid();
             Name = name;
             Age = ages;
             Clothings = clothings;
-            Gender = gender;
             Communities = communities;
+            Godfathers = godfathers;
             Responsiblies = responsiblies;
-            Printed = printed;
-            PcD = false;
             Campaigns = campaigns;
-        }
-
-        public Child(string name, IList<Age> ages, IList<Clothing> clothingies, Gender gender, IList<Community> communities, IList<Responsible> responsiblies, IList<Campaign.Campaign> campaigns, IList<Printed> printed, bool pcd)
-        {
-            Id = Guid.NewGuid();
-            Name = name;
-            Age = ages;
-            Clothings = clothingies;
-            Gender = gender;
-            Communities = communities;
-            Responsiblies = responsiblies;
             Printed = printed;
+            Gender = gender;
             PcD = pcd;
-            Campaigns = campaigns;
         }
 
-        public Child(Guid id, string name, IList<Age> ages, IList<Clothing> clothingies, Gender gender, IList<Community> communities, IList<Responsible> responsiblies, IList<Campaign.Campaign> campaigns, IList<Printed> printed, bool pcd)
+        public Child(
+            Guid id, 
+            string name, 
+            IList<Age> ages, 
+            IList<Clothing> clothings,
+            IList<Community> communities,
+            IList<GodFather> godfathers,
+            IList<Responsible> responsiblies, 
+            IList<Campaign.Campaign> campaigns, 
+            IList<Printed> printed,
+            Gender gender,
+            bool pcd)
         {
             Id = id;
             Name = name;
             Age = ages;
-            Clothings = clothingies;
-            Gender = gender;
+            Clothings = clothings;
             Communities = communities;
+            Godfathers = godfathers;
             Responsiblies = responsiblies;
-            Printed = printed;
-            PcD = pcd;
             Campaigns = campaigns;
-        }
-
-        public void Print()
-        {
-            //Printed = true;
+            Printed = printed;
+            Gender = gender;
+            PcD = pcd;
         }
 
         public void IsPcD() => PcD = true;

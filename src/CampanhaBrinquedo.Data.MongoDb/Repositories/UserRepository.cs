@@ -11,7 +11,6 @@ namespace Campanhabrinquedo.Repository.Repositories
         public UserRepository(
             IDatabaseFactory databaseFactory,
             IOptions<MongoOptions> mongoOptions
-        )
-            : base(databaseFactory, mongoOptions, "User") { }
+        ) : base(databaseFactory, mongoOptions, "User") { }
     }
 }

@@ -35,6 +35,7 @@ namespace CampanhaBrinquedo.Api.Controllers
             return Ok();
         }
 
+
         [HttpPut]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
@@ -44,6 +45,7 @@ namespace CampanhaBrinquedo.Api.Controllers
             await _repository.UpdateAsync(entity);
             return Ok();
         }
+
 
         [HttpDelete]
         [ProducesResponseType(200)]
