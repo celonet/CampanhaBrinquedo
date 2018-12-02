@@ -8,7 +8,8 @@ namespace CampanhaBrinquedo.Domain.Entities.Campaign
         public int Year { get; private set; }
         public string Description { get; private set; }
         public int ChildrensQty { get; private set; }
-        public ICampaignState State { get; set; }
+        public ICampaignActionState CampaignActionState { get; private set; }
+        public CampaignState State { get; private set; }
 
         protected Campaign() { }
 
@@ -18,7 +19,8 @@ namespace CampanhaBrinquedo.Domain.Entities.Campaign
             Year = ano;
             Description = descricao;
             ChildrensQty = 0;
-            State = new NotStarted();
+            State = CampaignState.NotStarted;
+            CampaignActionState = new NotStarted();
         }
 
         public Campaign(int ano, string descricao, int qtdeCriancas)
@@ -27,24 +29,31 @@ namespace CampanhaBrinquedo.Domain.Entities.Campaign
             Year = ano;
             Description = descricao;
             ChildrensQty = qtdeCriancas;
-            State = new NotStarted();
+            State = CampaignState.NotStarted;
+            CampaignActionState = new NotStarted();
         }
 
-        public Campaign(Guid id, int ano, string descricao, int qtdeCriancas, ICampaignState state)
+        public Campaign(Guid id, int ano, string descricao, int qtdeCriancas, string state)
         {
             Id = id;
             Year = ano;
             Description = descricao;
             ChildrensQty = qtdeCriancas;
-            State = state;
+            State = State;
         }
 
         public void IncreasesNumberOfChildren() => ChildrensQty++;
 
-        public void Open(User.User user) => State.Open(this, user);
+        public void Open(User.User user) => CampaignActionState.Open(this, user);
 
-        public void Close(User.User user) => State.Close(this, user);
+        public void Close(User.User user) => CampaignActionState.Close(this, user);
 
-        public void Reopen(User.User user) => State.Reopen(this, user);
+        public void Reopen(User.User user) => CampaignActionState.Reopen(this, user);
+
+        public void ChangeState(ICampaignActionState campaignState, CampaignState state)
+        {
+            this.CampaignActionState = campaignState;
+            this.State = state; 
+        }
     }
 }

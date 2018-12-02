@@ -4,6 +4,10 @@ namespace Campanhabrinquedo.IoC
 {
     public static class CampanhaBrinquedoExtensions
     {
-        public static IServiceCollection RegisterServices(this IServiceCollection services) => services.RegisterRepositories();
+        public static IServiceCollection RegisterServices(this IServiceCollection services)
+        {
+            return services.RegisterRepositories()
+            .RegisterServices();
+        }
     }
 }

@@ -2,9 +2,9 @@
 
 namespace CampanhaBrinquedo.Domain.Entities.Campaign.State
 {
-    public class Reopened : ICampaignState
+    public class Reopened : ICampaignActionState
     {
-        public void Close(Campaign campaign, User.User user) => campaign.State = new Closed();
+        public void Close(Campaign campaign, User.User user) => campaign.ChangeState(new Closed(), CampaignState.Closed);
 
         public void Open(Campaign campaign, User.User user) => throw new Exception("Campanha com status Reaberta não pode ir pra status Open!");
 

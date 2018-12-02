@@ -1,6 +1,6 @@
 ﻿namespace CampanhaBrinquedo.Domain.Entities.Campaign
 {
-    public interface ICampaignState
+    public interface ICampaignActionState
     {
         void Open(Campaign campaign, User.User user);
         void Close(Campaign campaign, User.User user);
