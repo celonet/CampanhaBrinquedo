@@ -37,7 +37,7 @@ namespace CampanhaBrinquedo.Test.Application.Entities
         [Fact]
         public void Close_Should_SwitchStateTo_Close()
         {
-            var campaign = new Campaign(Guid.NewGuid(), 2016, "", 0, new Open());
+            var campaign = new Campaign(Guid.NewGuid(), 2016, "", 0, CampaignState.Open.ToString());
 
             campaign.Close(_user);
 
@@ -50,7 +50,7 @@ namespace CampanhaBrinquedo.Test.Application.Entities
         [Fact]
         public void Reopen_Should_SwitchStatoTo_Reopen()
         {
-            var campaign = new Campaign(Guid.NewGuid(), 2016, "", 0, new Closed());
+            var campaign = new Campaign(Guid.NewGuid(), 2016, "", 0, CampaignState.Closed.ToString());
 
             campaign.Reopen(_user);
 

@@ -43,7 +43,11 @@ namespace CampanhaBrinquedo.Transport
 
         internal ChildBuilder AddResponsible(string name, string rg)
         {
-            _responsiblies.Add(new Responsible(_campaign.Year, name, rg));
+            if(!string.IsNullOrWhiteSpace(name))
+            {
+                _responsiblies.Add(new Responsible(_campaign.Year, name, rg));
+            }
+
             return this;
         }
 
@@ -101,7 +105,7 @@ namespace CampanhaBrinquedo.Transport
             {
                 Id = Guid.NewGuid(),
                 Name = _name,
-                Age = _ages,
+                Ages = _ages,
                 Clothings = _clothings,
                 Gender = _gender,
                 PCD = _pcd,
@@ -109,7 +113,8 @@ namespace CampanhaBrinquedo.Transport
                 Communities = _communities,
                 Responsiblies = _responsiblies,
                 Godfathers = _godFathers,
-                Campaigns = _campaigns
+                Campaigns = _campaigns,
+                RegisterDate = DateTime.Now
             };
         }
 

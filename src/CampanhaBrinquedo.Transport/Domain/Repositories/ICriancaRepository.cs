@@ -5,6 +5,6 @@ namespace CampanhaBrinquedo.Transport
 {
     public interface ICriancaRepository
     {
-        IEnumerable<Crianca> GetCriancas();
+        IEnumerable<Crianca> GetCriancas(int year);
     }
 }

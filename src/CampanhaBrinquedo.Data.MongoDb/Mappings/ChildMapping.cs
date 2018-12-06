@@ -9,11 +9,14 @@ namespace CampanhaBrinquedo.Data.MongoDb.Mappings
     {
         public void Map()
         {
-            BsonClassMap.RegisterClassMap<Child>(cm => {
-                cm.AutoMap();
-                cm.MapMember(c => c.Gender).SetSerializer(new EnumSerializer<Gender>(BsonType.String));
-                cm.UnmapMember(c => c.Campaigns);
-            });
+            if(!BsonClassMap.IsClassMapRegistered(typeof(Child)))
+            {
+                BsonClassMap.RegisterClassMap<Child>(cm =>
+                {
+                    cm.AutoMap();
+                    cm.MapMember(c => c.Gender).SetSerializer(new EnumSerializer<Gender>(BsonType.String));
+                });
+            }
         }
     }
 }

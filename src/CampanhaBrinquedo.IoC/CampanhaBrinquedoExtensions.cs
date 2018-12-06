@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using CampanhaBrinquedo.IoC;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Campanhabrinquedo.IoC
 {
@@ -6,8 +7,10 @@ namespace Campanhabrinquedo.IoC
     {
         public static IServiceCollection RegisterServices(this IServiceCollection services)
         {
-            return services.RegisterRepositories()
-            .RegisterServices();
+            return
+                services
+                    .RegisterRepositories()
+                    .RegisterServiceApp();
         }
     }
 }

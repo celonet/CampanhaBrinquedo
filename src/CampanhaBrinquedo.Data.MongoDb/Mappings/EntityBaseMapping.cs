@@ -9,11 +9,14 @@ namespace CampanhaBrinquedo.Data.MongoDb.Mappings
     {
         public void Map()
         {
-            BsonClassMap.RegisterClassMap<EntityBase>(cm =>
+            if(!BsonClassMap.IsClassMapRegistered(typeof(EntityBase)))
             {
-                cm.AutoMap();
-                cm.MapIdMember(c => c.Id).SetIdGenerator(CombGuidGenerator.Instance);
-            });
+                BsonClassMap.RegisterClassMap<EntityBase>(cm =>
+                {
+                    cm.AutoMap();
+                    cm.MapIdMember(c => c.Id).SetIdGenerator(CombGuidGenerator.Instance);
+                });
+            }
         }
     }
 }

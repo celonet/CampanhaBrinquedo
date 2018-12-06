@@ -21,7 +21,7 @@ namespace CampanhaBrinquedo.Transport.Model
         public string Telefone2 { get; set; }
         public string PadrinhoComunidade { get; set; }
         public string Responsavel { get; set; }
-        public string Rg { get; set; }
+        public string RG { get; set; }
     }
 
     [Serializable]

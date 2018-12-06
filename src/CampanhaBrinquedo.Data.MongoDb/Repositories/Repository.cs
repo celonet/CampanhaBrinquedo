@@ -27,7 +27,7 @@ namespace Campanhabrinquedo.Repository.Repositories
             _collectionName = collection;
         }
 
-        private IMongoCollection<T> Collection
+        protected IMongoCollection<T> Collection
             => _database.GetCollection<T>(_collectionName);
 
         public virtual void Create(T entity) => Collection.InsertOne(entity);

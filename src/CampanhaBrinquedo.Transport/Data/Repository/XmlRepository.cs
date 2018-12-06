@@ -2,23 +2,26 @@
 using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml.Serialization;
 
 namespace CampanhaBrinquedo.Transport.Data.Repositories
 {
     public class XmlRepository : ICriancaRepository
     {
-        private readonly CampaignConfiguration _options;
+        private readonly CampaignOptions _options;
 
-        public XmlRepository(IOptions<CampaignOptions> options) => _options = options.Value.GetCurrentCampaign();
+        public XmlRepository(IOptions<CampaignOptions> options) => _options = options.Value;
 
-        public IEnumerable<Crianca> GetCriancas()
+        public IEnumerable<Crianca> GetCriancas(int year)
         {
-            if(string.IsNullOrWhiteSpace(_options.Url))
+            var campaign = _options.Campaigns.FirstOrDefault(_ => _.Year == year);
+
+            if(campaign != null && string.IsNullOrWhiteSpace(campaign.Url))
                 throw new System.Exception("Arquivo faltando");
 
             XmlSerializer deserializer = new XmlSerializer(typeof(CampanhaMap));
-            TextReader textReader = new StreamReader(_options.Url);
+            TextReader textReader = new StreamReader(campaign.Url);
             var criancas = (CampanhaMap)deserializer.Deserialize(textReader);
             textReader.Close();
 

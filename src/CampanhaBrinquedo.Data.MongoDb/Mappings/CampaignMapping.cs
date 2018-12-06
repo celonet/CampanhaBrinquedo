@@ -7,11 +7,14 @@ namespace CampanhaBrinquedo.Data.MongoDb.Mappings
     {
         public void Map()
         {
-            BsonClassMap.RegisterClassMap<Campaign>(cm =>
+            if(!BsonClassMap.IsClassMapRegistered(typeof(Campaign)))
             {
-                cm.AutoMap();
-                cm.UnmapMember(c => c.State);
-            });
+                BsonClassMap.RegisterClassMap<Campaign>(cm =>
+                {
+                    cm.AutoMap();
+                    cm.UnmapMember(c => c.State);
+                });
+            }
         }
     }
 }

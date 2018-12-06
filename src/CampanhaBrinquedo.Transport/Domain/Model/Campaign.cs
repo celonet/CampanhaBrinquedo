@@ -16,6 +16,7 @@ namespace CampanhaBrinquedo.Transport.Model
         {
             this.Year = year;
             this.State = state;
+            this.RegisterDate = DateTime.Now;
         }
 
         [BsonId(IdGenerator = typeof(CombGuidGenerator))]
@@ -28,5 +29,7 @@ namespace CampanhaBrinquedo.Transport.Model
         public int ChildrensQty { get; set; }
         [BsonElement("state")]
         public string State { get; set; }
+        [BsonElement("registerDate")]
+        public DateTime RegisterDate { get; set; }
     }
 }

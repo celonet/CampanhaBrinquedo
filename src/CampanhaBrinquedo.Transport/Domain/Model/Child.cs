@@ -12,13 +12,13 @@ namespace CampanhaBrinquedo.Transport.Model
         public Guid Id { get; set; }
         [BsonElement("name")]
         public string Name { get; set; }
-        [BsonElement("age")]
-        public IList<Age> Age { get; set; }
+        [BsonElement("ages")]
+        public IList<Age> Ages { get; set; }
         [BsonElement("clothings")]
         public IList<Clothing> Clothings { get; set; }
         [BsonElement("communities")]
         public IList<Community> Communities { get; set; }
-        [BsonElement("godfathers")]
+        [BsonElement("godFathers")]
         public IList<GodFather> Godfathers { get; set; }
         [BsonElement("responsiblies")]
         public IList<Responsible> Responsiblies { get; set; }
@@ -30,5 +30,7 @@ namespace CampanhaBrinquedo.Transport.Model
         public bool PCD { get; set; }
         [BsonElement("gender")]
         public string Gender { get; set; }
+        [BsonElement("registerDate")]
+        public DateTime RegisterDate { get; set; }
     }
 }
