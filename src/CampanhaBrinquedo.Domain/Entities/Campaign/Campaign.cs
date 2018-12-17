@@ -39,7 +39,8 @@ namespace CampanhaBrinquedo.Domain.Entities.Campaign
             Year = ano;
             Description = descricao;
             ChildrensQty = qtdeCriancas;
-            State = State;
+            State =  Enum.Parse<CampaignState>(state);
+            CampaignActionState = SetCampaignActionState(State);
         }
 
         public void IncreasesNumberOfChildren() => ChildrensQty++;
@@ -54,6 +55,21 @@ namespace CampanhaBrinquedo.Domain.Entities.Campaign
         {
             this.CampaignActionState = campaignState;
             this.State = state; 
+        }
+
+        private ICampaignActionState SetCampaignActionState(CampaignState state)
+        {
+            switch (state)
+            {
+                case CampaignState.Open:
+                    return new Open();
+                case CampaignState.Closed:
+                    return new Closed();
+                case CampaignState.Reopened:
+                    return new Reopened();
+                default:
+                     return new NotStarted();
+            }
         }
     }
 }
