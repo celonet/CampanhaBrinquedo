@@ -30,8 +30,8 @@ namespace CampanhaBrinquedo.Test.Application.Entities
 
             campaign.Open(_user);
 
-            campaign.State.Should().NotBeOfType<NotStarted>();
-            campaign.State.Should().BeOfType<Open>();
+            campaign.State.Should().NotBe(CampaignState.NotStarted);
+            campaign.State.Should().Be(CampaignState.Open);
         }
 
         [Fact]
@@ -41,10 +41,10 @@ namespace CampanhaBrinquedo.Test.Application.Entities
 
             campaign.Close(_user);
 
-            campaign.State.Should().NotBeOfType<NotStarted>();
-            campaign.State.Should().NotBeOfType<Open>();
-            campaign.State.Should().NotBeOfType<Reopened>();
-            campaign.State.Should().BeOfType<Closed>();
+            campaign.State.Should().NotBe(CampaignState.NotStarted);
+            campaign.State.Should().NotBe(CampaignState.Open);
+            campaign.State.Should().NotBe(CampaignState.Reopened);
+            campaign.State.Should().Be(CampaignState.Closed);
         }
 
         [Fact]
@@ -54,10 +54,10 @@ namespace CampanhaBrinquedo.Test.Application.Entities
 
             campaign.Reopen(_user);
 
-            campaign.State.Should().NotBeOfType<NotStarted>();
-            campaign.State.Should().NotBeOfType<Open>();
-            campaign.State.Should().NotBeOfType<Closed>();
-            campaign.State.Should().BeOfType<Reopened>();
+            campaign.State.Should().NotBe(CampaignState.NotStarted);
+            campaign.State.Should().NotBe(CampaignState.Open);
+            campaign.State.Should().NotBe(CampaignState.Closed);
+            campaign.State.Should().Be(CampaignState.Reopened);
         }
     }
 }
