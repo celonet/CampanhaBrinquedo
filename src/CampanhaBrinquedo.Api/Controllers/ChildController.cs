@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using System.Linq;
 using CampanhaBrinquedo.Domain.Services;
 using CampanhaBrinquedo.Api.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CampanhaBrinquedo.Api.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ChildController : ControllerBase

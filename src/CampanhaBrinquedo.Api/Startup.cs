@@ -1,5 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using Campanhabrinquedo.IoC;
+﻿using Campanhabrinquedo.IoC;
 using CampanhaBrinquedo.IoC;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System.Diagnostics.CodeAnalysis;
 
 namespace CampanhaBrinquedo.Api
 {
@@ -30,9 +30,9 @@ namespace CampanhaBrinquedo.Api
             services
                 .AddCors()
                 .RegisterDatabase()
-                .RegisterServices();
-
-            services
+                .RegisterServices(Configuration)
+                .RegisterAuthentication()
+                .AddSwagger()
                 .AddMvc()
                 .AddJsonOptions(options =>
                 {
@@ -40,9 +40,6 @@ namespace CampanhaBrinquedo.Api
                     options.SerializerSettings.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
-            services
-                .AddSwagger();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
@@ -50,7 +47,7 @@ namespace CampanhaBrinquedo.Api
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            if(env.IsDevelopment())
+            if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -58,6 +55,7 @@ namespace CampanhaBrinquedo.Api
             app
                 .ConfigureCors()
                 .UseMvc()
+                .UseAuthentication()
                 .ConfigureSwagger();
         }
     }

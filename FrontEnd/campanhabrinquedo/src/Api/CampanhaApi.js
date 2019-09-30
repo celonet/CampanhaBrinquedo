@@ -1,12 +1,15 @@
-import mock from './mock';
+import createAxios from './../Config/axios'
 
 export default class CampanhaApi {
-    constructor() {
-        this.baseUrl = 'http://localhost:5000';
-    }
-    list() {
-        ////new mock().list()
-        return fetch(`${this.baseUrl}/api/child`)
-            .then(response => response.json());
+
+    list = async () => createAxios.get('/child/all')
+
+    associate = async (childId, associateChild) => {
+        return createAxios.put('/child/associate',
+            {
+                "ChildId": childId,
+                "AssociateChild": associateChild
+            }
+        );
     }
 }

@@ -1,11 +1,13 @@
 ﻿using CampanhaBrinquedo.Domain.Entities.Campaign;
 using CampanhaBrinquedo.Domain.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 
 namespace CampanhaBrinquedo.Api.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CampaignController : ControllerBase

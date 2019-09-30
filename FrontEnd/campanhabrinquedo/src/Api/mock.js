@@ -1,7 +1,10 @@
-import response from './response.json';
+import childResponse from './childs.json';
 
 export default class mock {
+    getAllChild() {
+        return childResponse;
+    }
     list() {
-        return response;
+        
     }
 }
