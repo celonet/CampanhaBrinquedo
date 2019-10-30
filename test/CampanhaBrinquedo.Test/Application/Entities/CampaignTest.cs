@@ -1,8 +1,7 @@
-﻿using System;
-using CampanhaBrinquedo.Domain.Entities.Campaign;
-using CampanhaBrinquedo.Domain.Entities.Campaign.State;
+﻿using CampanhaBrinquedo.Domain.Entities.Campaign;
 using CampanhaBrinquedo.Domain.Entities.User;
 using FluentAssertions;
+using System;
 using Xunit;
 
 namespace CampanhaBrinquedo.Test.Application.Entities

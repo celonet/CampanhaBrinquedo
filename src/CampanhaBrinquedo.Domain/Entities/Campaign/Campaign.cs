@@ -39,7 +39,7 @@ namespace CampanhaBrinquedo.Domain.Entities.Campaign
             Year = ano;
             Description = descricao;
             ChildrensQty = qtdeCriancas;
-            State =  Enum.Parse<CampaignState>(state);
+            State = Enum.Parse<CampaignState>(state);
             CampaignActionState = SetCampaignActionState(State);
         }
 
@@ -53,8 +53,8 @@ namespace CampanhaBrinquedo.Domain.Entities.Campaign
 
         public void ChangeState(ICampaignActionState campaignState, CampaignState state)
         {
-            this.CampaignActionState = campaignState;
-            this.State = state; 
+            CampaignActionState = campaignState;
+            State = state;
         }
 
         private ICampaignActionState SetCampaignActionState(CampaignState state)
@@ -68,8 +68,49 @@ namespace CampanhaBrinquedo.Domain.Entities.Campaign
                 case CampaignState.Reopened:
                     return new Reopened();
                 default:
-                     return new NotStarted();
+                    return new NotStarted();
             }
         }
+    }
+
+    public class CampaignInformation
+    {
+        public int Year { get; private set; }
+        public CampaignAnalitics CampaignAnalitics { get; private set; }
+        public GenderAnalitcs GenderAnalitcs { get; private set; }
+
+        public CampaignInformation(int year, CampaignAnalitics campaignAnalitics, GenderAnalitcs genderAnalitcs)
+        {
+            Year = year;
+            CampaignAnalitics = campaignAnalitics;
+            GenderAnalitcs = genderAnalitcs;
+        }
+    }
+
+    public class CampaignAnalitics
+    {
+        public int Capacity { get; set; }
+        public int ChildrenQty { get; set; }
+        public int GodFatherQty { get; set; }
+        public int CommunityQty { get; set; }
+
+        public CampaignAnalitics()
+        {
+
+        }
+
+        public CampaignAnalitics(int capacity, int childrenQty, int godFatherQty, int communityQty)
+        {
+            Capacity = capacity;
+            ChildrenQty = childrenQty;
+            GodFatherQty = godFatherQty;
+            CommunityQty = communityQty;
+        }
+    }
+
+    public struct GenderAnalitcs
+    {
+        public int MaleQty { get; set; }
+        public int FemaleQty { get; set; }
     }
 }
