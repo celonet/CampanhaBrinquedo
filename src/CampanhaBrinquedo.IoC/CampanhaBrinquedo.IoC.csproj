@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\CampanhaBrinquedo.Data.XmlImport\CampanhaBrinquedo.Data.XmlImport.csproj" />
     <ProjectReference Include="..\CampanhaBrinquedo.CrossCutting\CampanhaBrinquedo.CrossCutting.csproj" />
     <ProjectReference Include="..\CampanhaBrinquedo.Data.MongoDb\CampanhaBrinquedo.Data.MongoDb.csproj" />
     <ProjectReference Include="..\CampanhaBrinquedo.Domain\CampanhaBrinquedo.Domain.csproj" />

@@ -1,4 +1,5 @@
 ﻿using Campanhabrinquedo.Repository.Repositories;
+using CampanhaBrinquedo.Data.XmlImport.Repositories;
 using CampanhaBrinquedo.Domain.Interfaces;
 using CampanhaBrinquedo.Domain.Repositories;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,6 +12,7 @@ namespace Campanhabrinquedo.IoC
                 .AddSingleton<IUserRepository, UserRepository>()
                 .AddSingleton<ICampaignRepository, CampaignRepository>()
                 .AddSingleton<IChildRepository, ChildRepository>()
+                .AddSingleton<IChildImportRepository, ChildImportRepository>()
                 .AddSingleton(typeof(IRepository<>), typeof(Repository<>));
     }
 }

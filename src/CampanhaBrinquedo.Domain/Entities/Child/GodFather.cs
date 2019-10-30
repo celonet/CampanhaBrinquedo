@@ -12,22 +12,16 @@ namespace CampanhaBrinquedo.Domain.Entities.Child
 
         protected GodFather() { }
 
-        public GodFather(string name, Community community, string telephone)
+        public GodFather(int year, string name, Community community, string telephone)
+            : base(year)
         {
             Name = name;
             Community = community;
             Telephone = telephone;
         }
 
-        public GodFather(string name, Community community, string telephone, string cellphone)
-        {
-            Name = name;
-            Community = community;
-            Telephone = telephone;
-            CellPhone = cellphone;
-        }
-
-        public GodFather(Guid id, string name, Community community, string telephone, string cellphone)
+        public GodFather(int year, string name, Community community, string telephone, string cellphone)
+            : base(year)
         {
             Name = name;
             Community = community;
@@ -35,7 +29,17 @@ namespace CampanhaBrinquedo.Domain.Entities.Child
             CellPhone = cellphone;
         }
 
-        public GodFather(Guid id, string name, Community community, string telephone, string cellphone, string email)
+        public GodFather(int year, Guid id, string name, Community community, string telephone, string cellphone)
+            : base(year)
+        {
+            Name = name;
+            Community = community;
+            Telephone = telephone;
+            CellPhone = cellphone;
+        }
+
+        public GodFather(int year, Guid id, string name, Community community, string telephone, string cellphone, string email)
+            : base(year)
         {
             Name = name;
             Community = community;

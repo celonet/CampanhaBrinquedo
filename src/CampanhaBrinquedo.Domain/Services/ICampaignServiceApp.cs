@@ -14,6 +14,6 @@ namespace CampanhaBrinquedo.Domain.Services
         Task<CampaignInformation> GetInformations();
         Task ChangeCampaign(Campaign entity);
         Task DeleteCampaign(Guid id);
-        Task ImportCampaign(byte[] file);
+        Task ImportCampaign(int year, byte[] file);
     }
 }

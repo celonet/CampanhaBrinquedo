@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29418.71
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.902
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CampanhaBrinquedo.Domain", "src\CampanhaBrinquedo.Domain\CampanhaBrinquedo.Domain.csproj", "{9603B30B-CF82-4136-A485-0D1B2593902D}"
 EndProject
@@ -37,7 +37,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CampanhaBrinquedo.CrossCutt
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CampanhaBrinquedo.Transport", "src\CampanhaBrinquedo.Transport\CampanhaBrinquedo.Transport.csproj", "{40D25C25-9686-4A96-99D3-9FF32D3947FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CampanhaBrinquedo.Api", "src\CampanhaBrinquedo.Api\CampanhaBrinquedo.Api.csproj", "{C1081EAC-77AA-46DE-8A02-3652AB8DD3C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CampanhaBrinquedo.Api", "src\CampanhaBrinquedo.Api\CampanhaBrinquedo.Api.csproj", "{C1081EAC-77AA-46DE-8A02-3652AB8DD3C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CampanhaBrinquedo.Data.XmlImport", "CampanhaBrinquedo.Data.XmlImport\CampanhaBrinquedo.Data.XmlImport.csproj", "{5996A760-C308-41AC-94F5-44C467C281D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,6 +79,10 @@ Global
 		{C1081EAC-77AA-46DE-8A02-3652AB8DD3C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1081EAC-77AA-46DE-8A02-3652AB8DD3C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1081EAC-77AA-46DE-8A02-3652AB8DD3C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5996A760-C308-41AC-94F5-44C467C281D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5996A760-C308-41AC-94F5-44C467C281D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5996A760-C308-41AC-94F5-44C467C281D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5996A760-C308-41AC-94F5-44C467C281D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -94,6 +100,7 @@ Global
 		{9482659C-6B6E-4CE9-A3B6-4F049C2602FD} = {714EA5C3-0232-41E1-838E-21EAFBD40578}
 		{40D25C25-9686-4A96-99D3-9FF32D3947FF} = {714EA5C3-0232-41E1-838E-21EAFBD40578}
 		{C1081EAC-77AA-46DE-8A02-3652AB8DD3C4} = {92149CA9-2808-44CA-8C7E-6A14D5F42168}
+		{5996A760-C308-41AC-94F5-44C467C281D6} = {714EA5C3-0232-41E1-838E-21EAFBD40578}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6B02538A-B3F3-45CF-A1E8-F3ABE6E540C8}

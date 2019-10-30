@@ -17,7 +17,7 @@ namespace CampanhaBrinquedo.Api.Controllers
     {
         private readonly ICampaignServiceApp _campaignService;
 
-        public CampaignController(ICampaignServiceApp campaignService) 
+        public CampaignController(ICampaignServiceApp campaignService)
             => _campaignService = campaignService;
 
         [HttpGet]
@@ -54,22 +54,24 @@ namespace CampanhaBrinquedo.Api.Controllers
             return Ok();
         }
 
-        [HttpPost("import")]
+        [HttpPost("import/{year}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
-        public async Task<IActionResult> Import(IFormFile file)
+        public async Task<IActionResult> Import([FromRoute]int year, IFormFile file)
         {
             if (file == null || file.Length == 0)
+            {
                 return BadRequest("invalid file");
+            }
 
             using (var ms = new MemoryStream())
             {
                 file.CopyTo(ms);
                 var fileBytes = ms.ToArray();
-               await _campaignService.ImportCampaign(fileBytes);
+                await _campaignService.ImportCampaign(year, fileBytes);
             }
-                    
+
             return Ok();
         }
 
