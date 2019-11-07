@@ -6,9 +6,9 @@ namespace CampanhaBrinquedo.Domain.Entities.Child
 {
     public class Child : EntityBase
     {
-        public string Name { get; protected set; }
-        public IList<Age> Ages { get; set; }
-        public IList<Clothing> Clothings { get; set; }
+        public string Name { get; private set; }
+        public IList<Age> Ages { get; private set; }
+        public IList<Clothing> Clothings { get; private set; }
         public IList<Community> Communities { get; private set; }
         public IList<GodFather> GodFathers { get; private set; }
         public IList<Responsible> Responsiblies { get; private set; }
@@ -100,5 +100,11 @@ namespace CampanhaBrinquedo.Domain.Entities.Child
 
             return this;
         }
+
+        public void AddGodFathers(GodFather godFather) 
+            => GodFathers.Add(godFather);
+
+        public void AddPrinteds(Printed printed)
+            => Printeds.Add(printed);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CampanhaBrinquedo.Domain.Entities.Campaign;
+using CampanhaBrinquedo.Domain.Repositories;
 using CampanhaBrinquedo.Domain.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -10,14 +11,17 @@ using System.Threading.Tasks;
 
 namespace CampanhaBrinquedo.Api.Controllers
 {
+
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class CampaignController : ControllerBase
+    public class CampaignController : BaseController
     {
         private readonly ICampaignServiceApp _campaignService;
 
-        public CampaignController(ICampaignServiceApp campaignService)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public CampaignController(ICampaignServiceApp campaignService, IUserRepository userRepository, IHttpContextAccessor httpContextAccessor) : base(userRepository, httpContextAccessor)
             => _campaignService = campaignService;
 
         [HttpGet]
@@ -85,6 +89,17 @@ namespace CampanhaBrinquedo.Api.Controllers
             return Ok();
         }
 
+        [HttpPut("status/{changestatus}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(500)]
+        public async Task<IActionResult> Put([FromRoute]string changestatus)
+        {
+            Enum.TryParse(changestatus, out CampaignState status);
+            var user = await GetUser();
+            await _campaignService.ChangeState(status, user);
+            return Ok();
+        }
 
         [HttpDelete]
         [ProducesResponseType(200)]

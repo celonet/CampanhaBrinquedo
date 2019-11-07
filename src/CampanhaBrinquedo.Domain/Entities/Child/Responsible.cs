@@ -14,7 +14,7 @@ namespace CampanhaBrinquedo.Domain.Entities.Child
             RG = rg;
         }
 
-        public Responsible(Guid id, string nome, string rg)
+        public Responsible(int year, Guid id, string nome, string rg)
             : base(year)
         {
             Name = nome;

@@ -37,7 +37,7 @@ namespace Campanhabrinquedo.IoC
 
         public static IApplicationBuilder UseDatabase(this IApplicationBuilder app)
         {
-            app.ApplicationServices.GetService<IDatabaseInitializer>().InitializeAsync();
+            app.ApplicationServices.GetService<IDatabaseInitializer>().Initialize();
             return app;
         }
     }

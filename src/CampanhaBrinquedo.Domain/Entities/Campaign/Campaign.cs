@@ -11,7 +11,7 @@ namespace CampanhaBrinquedo.Domain.Entities.Campaign
         public ICampaignActionState CampaignActionState { get; private set; }
         public CampaignState State { get; private set; }
 
-        protected Campaign() { }
+        protected Campaign() : base() { }
 
         public Campaign(int ano, string descricao)
         {
@@ -23,7 +23,7 @@ namespace CampanhaBrinquedo.Domain.Entities.Campaign
             CampaignActionState = new NotStarted();
         }
 
-        public Campaign(int ano, string descricao, int qtdeCriancas)
+        public Campaign(int ano, string descricao, int qtdeCriancas) : base()
         {
             Id = Guid.NewGuid();
             Year = ano;
@@ -31,6 +31,15 @@ namespace CampanhaBrinquedo.Domain.Entities.Campaign
             ChildrensQty = qtdeCriancas;
             State = CampaignState.NotStarted;
             CampaignActionState = new NotStarted();
+        }
+
+        public Campaign(int ano, string descricao, int qtdeCriancas, string state) : base()
+        {
+            Year = ano;
+            Description = descricao;
+            ChildrensQty = qtdeCriancas;
+            State = Enum.Parse<CampaignState>(state);
+            CampaignActionState = SetCampaignActionState(State);
         }
 
         public Campaign(Guid id, int ano, string descricao, int qtdeCriancas, string state)
@@ -71,46 +80,5 @@ namespace CampanhaBrinquedo.Domain.Entities.Campaign
                     return new NotStarted();
             }
         }
-    }
-
-    public class CampaignInformation
-    {
-        public int Year { get; private set; }
-        public CampaignAnalitics CampaignAnalitics { get; private set; }
-        public GenderAnalitcs GenderAnalitcs { get; private set; }
-
-        public CampaignInformation(int year, CampaignAnalitics campaignAnalitics, GenderAnalitcs genderAnalitcs)
-        {
-            Year = year;
-            CampaignAnalitics = campaignAnalitics;
-            GenderAnalitcs = genderAnalitcs;
-        }
-    }
-
-    public class CampaignAnalitics
-    {
-        public int Capacity { get; set; }
-        public int ChildrenQty { get; set; }
-        public int GodFatherQty { get; set; }
-        public int CommunityQty { get; set; }
-
-        public CampaignAnalitics()
-        {
-
-        }
-
-        public CampaignAnalitics(int capacity, int childrenQty, int godFatherQty, int communityQty)
-        {
-            Capacity = capacity;
-            ChildrenQty = childrenQty;
-            GodFatherQty = godFatherQty;
-            CommunityQty = communityQty;
-        }
-    }
-
-    public struct GenderAnalitcs
-    {
-        public int MaleQty { get; set; }
-        public int FemaleQty { get; set; }
     }
 }

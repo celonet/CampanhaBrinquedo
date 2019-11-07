@@ -6,9 +6,7 @@ namespace CampanhaBrinquedo.IoC
 {
     public static class OptionsExtensions
     {
-        public static IServiceCollection RegisterOptions(this IServiceCollection services, IConfiguration configuration)
-        {
-            return services.Configure<JwtIssuerOptions>(options => configuration.GetSection("JwtIssuerOptions").Bind(options));
-        }
+        public static IServiceCollection RegisterOptions(this IServiceCollection services, IConfiguration configuration) 
+            => services.Configure<JwtIssuerOptions>(options => configuration.GetSection("JwtIssuerOptions").Bind(options));
     }
 }

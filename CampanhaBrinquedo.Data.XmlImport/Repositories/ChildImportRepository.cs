@@ -10,12 +10,12 @@ namespace CampanhaBrinquedo.Data.XmlImport.Repositories
     {
         public IEnumerable<ChildImport> GetImports(string xmlFile)
         {
-            XmlSerializer deserializer = new XmlSerializer(typeof(CampanhaMap));
-            TextReader textReader = new StreamReader(xmlFile);
-            var childs = (CampanhaMap)deserializer.Deserialize(textReader);
-            textReader.Close();
-
-            return childs.ChildImports;
+            using (TextReader textReader = new StringReader(xmlFile))
+            {
+                var deserializer = new XmlSerializer(typeof(CampanhaMap));
+                var childs = (CampanhaMap)deserializer.Deserialize(textReader);
+                return childs.ChildImports;
+            }
         }
     }
 }

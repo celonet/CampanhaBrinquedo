@@ -10,8 +10,6 @@ namespace CampanhaBrinquedo.Domain.Entities.Child
         public string CellPhone { get; private set; }
         public string Email { get; private set; }
 
-        protected GodFather() { }
-
         public GodFather(int year, string name, Community community, string telephone)
             : base(year)
         {
@@ -21,6 +19,15 @@ namespace CampanhaBrinquedo.Domain.Entities.Child
         }
 
         public GodFather(int year, string name, Community community, string telephone, string cellphone)
+            : base(year)
+        {
+            Name = name;
+            Community = community;
+            Telephone = telephone;
+            CellPhone = cellphone;
+        }
+
+        public GodFather(int year, string name, Community community, string telephone, string cellphone, string email)
             : base(year)
         {
             Name = name;

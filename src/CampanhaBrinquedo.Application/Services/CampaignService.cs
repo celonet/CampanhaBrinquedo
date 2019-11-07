@@ -1,5 +1,7 @@
+using CampanhaBrinquedo.Application.Services.Builders;
 using CampanhaBrinquedo.Domain.Entities.Campaign;
 using CampanhaBrinquedo.Domain.Entities.Child;
+using CampanhaBrinquedo.Domain.Entities.User;
 using CampanhaBrinquedo.Domain.Repositories;
 using CampanhaBrinquedo.Domain.Services;
 using System;
@@ -15,18 +17,34 @@ namespace CampanhaBrinquedo.Application.Services
         private readonly IChildRepository _childRepository;
         private readonly IChildImportRepository _childImportRepository;
 
-        public CampaignService(ICampaignRepository campaignRepository, IChildRepository childRepository)
+        public CampaignService(ICampaignRepository campaignRepository, IChildRepository childRepository, IChildImportRepository childImportRepository)
         {
             _campaignRepository = campaignRepository;
             _childRepository = childRepository;
+            _childImportRepository = childImportRepository;
         }
 
         public async Task ChangeCampaign(Campaign entity) => await _campaignRepository.UpdateAsync(entity);
 
-        public async Task ChangeState(CampaignState state)
+        public async Task ChangeState(CampaignState state, User user)
         {
-            //var campaign = await GetCurrent();
-            throw new System.NotImplementedException();
+            var campaign = await GetCurrent();
+
+            switch (state)
+            {
+                case CampaignState.Closed:
+                    campaign.Close(user);
+                    break;
+                case CampaignState.Open:
+                    campaign.Open(user);
+                    break;
+                case CampaignState.Reopened:
+                    campaign.Reopen(user);
+                    break;
+                case CampaignState.NotStarted:
+                default:
+                    break;
+            }
         }
 
         public async Task CreateCampaign(Campaign campaign) => await _campaignRepository.CreateAsync(campaign);
@@ -42,14 +60,14 @@ namespace CampanhaBrinquedo.Application.Services
             var communities = childs.SelectMany(_ => _.Communities).Select(_ => _.Name).Distinct();
             var godFathers = childs.SelectMany(_ => _.GodFathers).Select(_ => _.Name).Distinct();
             return new CampaignInformation(
-                campaign.Year, 
+                campaign.Year,
                 new CampaignAnalitics
                 {
                     Capacity = campaign.ChildrensQty,
                     ChildrenQty = childs.Count(),
                     CommunityQty = communities.Count(),
                     GodFatherQty = godFathers.Count(),
-                }, 
+                },
                 new GenderAnalitcs
                 {
                     MaleQty = childs.Count(_ => _.Gender == Gender.Male),
@@ -64,15 +82,14 @@ namespace CampanhaBrinquedo.Application.Services
             if (campaign == null)
             {
                 string xmlFile = System.Text.Encoding.ASCII.GetString(file);
-                
+
                 var childImports = _childImportRepository.GetImports(xmlFile);
 
                 _campaignRepository.Create(new Campaign(year, "", childImports.Count()));
-
-                await InsertChilds(childImports, campaign);
+                var createdCampaign = await _campaignRepository.FindByExpression(_ => _.Year == year);
+                await InsertChilds(childImports, createdCampaign);
             }
         }
-
 
         private async Task InsertChilds(IEnumerable<ChildImport> criancas, Campaign campaign)
         {
@@ -102,14 +119,13 @@ namespace CampanhaBrinquedo.Application.Services
 
                     if (!string.IsNullOrWhiteSpace(crianca.Padrinho))
                     {
-                        childExists.Godfathers.Add(
+                        childExists.AddGodFathers(
                             new GodFather(
-                                campaign.Year, 
-                                crianca.Padrinho, 
-                                new Community(campaign.Year, crianca.PadrinhoComunidade, ""), 
-                                crianca.Telefone, 
-                                crianca.Telefone2, 
-                                ""
+                                campaign.Year,
+                                crianca.Padrinho,
+                                new Community(campaign.Year, crianca.PadrinhoComunidade, ""),
+                                crianca.Telefone,
+                                crianca.Telefone2
                             ));
                     }
 
@@ -122,11 +138,11 @@ namespace CampanhaBrinquedo.Application.Services
 
                     childExists.Campaigns.Add(campaign);
 
-                    childExists.Printed.Add(
+                    childExists.AddPrinteds(
                         new Printed(campaign.Year, crianca.Impresso)
                     );
 
-                    await _childRepository.UpdateChild(childExists);
+                    await _childRepository.UpdateAsync(childExists);
                 }
                 else
                 {
@@ -144,7 +160,7 @@ namespace CampanhaBrinquedo.Application.Services
                       .AddResponsible(crianca.Responsavel, crianca.RG)
                       .Build();
                     Console.WriteLine($"Incluindo {crianca.Nome}");
-                    await _childRepository.InsertChild(newChild);
+                    await _childRepository.CreateAsync(newChild);
                 }
             }
         }

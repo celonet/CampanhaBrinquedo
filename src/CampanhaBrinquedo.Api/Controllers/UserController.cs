@@ -34,8 +34,8 @@ namespace CampanhaBrinquedo.Api.Controllers
         [ProducesResponseType(500)]
         public async Task<IActionResult> Get(Guid userId)
         {
-            await _repository.FindById(userId);
-            return Ok();
+            var user = await _repository.FindById(userId);
+            return Ok(user);
         }
 
         [AllowAnonymous]
