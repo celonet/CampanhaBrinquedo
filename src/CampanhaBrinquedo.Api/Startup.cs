@@ -28,6 +28,7 @@ namespace CampanhaBrinquedo.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services
+                .AddHttpContextAccessor()
                 .AddCors()
                 .RegisterDatabase()
                 .RegisterServices(Configuration)

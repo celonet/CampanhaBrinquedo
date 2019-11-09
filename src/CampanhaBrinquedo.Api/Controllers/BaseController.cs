@@ -2,7 +2,6 @@
 using CampanhaBrinquedo.Domain.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace CampanhaBrinquedo.Api.Controllers
@@ -11,18 +10,13 @@ namespace CampanhaBrinquedo.Api.Controllers
     {
         protected new readonly string User;
         protected IUserRepository _userRepository;
-        private readonly IHttpContextAccessor _httpContextAccessor;
 
         public BaseController(IUserRepository userRepository, IHttpContextAccessor httpContextAccessor)
         {
             _userRepository = userRepository;
-            User = HttpContext.User.Identity.Name;
-            _httpContextAccessor = httpContextAccessor;
-
-            var userId = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-
+            User = httpContextAccessor.HttpContext.User.Identity.Name;
         }
 
-        protected Task<User> GetUser() => _userRepository.FindByExpression(_ => _.Name == User);
+        protected Task<User> GetUser() => _userRepository.FindByExpression(_ => _.Email == User);
     }
 }

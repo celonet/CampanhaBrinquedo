@@ -45,6 +45,8 @@ namespace CampanhaBrinquedo.Application.Services
                 default:
                     break;
             }
+
+            await _campaignRepository.UpdateAsync(campaign);
         }
 
         public async Task CreateCampaign(Campaign campaign) => await _campaignRepository.CreateAsync(campaign);
@@ -85,7 +87,9 @@ namespace CampanhaBrinquedo.Application.Services
 
                 var childImports = _childImportRepository.GetImports(xmlFile);
 
-                _campaignRepository.Create(new Campaign(year, "", childImports.Count()));
+                var newCampaign = new Campaign(year, "", childImports.Count(), CampaignState.Open.ToString());
+                newCampaign.IncluiDataCadastro();
+                _campaignRepository.Create(newCampaign);
                 var createdCampaign = await _campaignRepository.FindByExpression(_ => _.Year == year);
                 await InsertChilds(childImports, createdCampaign);
             }
@@ -148,7 +152,6 @@ namespace CampanhaBrinquedo.Application.Services
                 {
                     var newChild = new ChildBuilder()
                       .SetCampaign(campaign)
-                      .AddCampaign(campaign.Year, campaign.ChildrensQty, campaign.Description)
                       .SetName(crianca.Nome)
                       .AddAge(crianca.Idade)
                       .AddClothing(crianca.Roupa)

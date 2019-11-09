@@ -33,6 +33,7 @@ namespace CampanhaBrinquedo.Application.Services.Builders
         internal ChildBuilder SetCampaign(Campaign campaign)
         {
             _campaign = campaign;
+            _campaigns.Add(campaign);
             return this;
         }
 
@@ -76,12 +77,6 @@ namespace CampanhaBrinquedo.Application.Services.Builders
             return this;
         }
 
-        public ChildBuilder AddCampaign(int year, int qtde = 0, string description = "")
-        {
-            _campaigns.Add(new Campaign(year, description, qtde, "Closed"));
-            return this;
-        }
-
         public ChildBuilder SetName(string name)
         {
             _name = name;
@@ -96,7 +91,7 @@ namespace CampanhaBrinquedo.Application.Services.Builders
 
         public Child Build()
         {
-            return new Child(
+            var child = new Child(
                 Guid.NewGuid(),
                 _name,
                 _ages,
@@ -109,6 +104,8 @@ namespace CampanhaBrinquedo.Application.Services.Builders
                 _gender,
                 _pcd
             );
+            child.IncluiDataCadastro();
+            return child;
         }
 
         public ChildBuilder AddClothing(string clothing)
