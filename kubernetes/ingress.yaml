@@ -8,6 +8,7 @@ spec:
   - host: celonet.usw1.kubesail.io
     http:
       paths:
-      - backend:
+      - path: /api
+        backend:
           serviceName: campanhabrinquedo-api
           servicePort: 80
