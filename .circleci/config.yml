@@ -1,6 +1,7 @@
 version: 2.0
 jobs:
   build:
+    machine: true
     steps:
       - checkout
       - setup_remote_docker: 
@@ -8,10 +9,10 @@ jobs:
       - run:
           name: Build and push Docker image
           command: |
-            docker build -t campanhabrinquedo-api .
             echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
-            docker tag campanhabrinquedo-api celonet.azurecr.io/campanhabrinquedo-api:1.0.${CIRCLE_BUILD_NUM}
-            docker push celonet.azurecr.io/campanhabrinquedo-api:1.0.${CIRCLE_BUILD_NUM}
+      - run: docker build -t campanhabrinquedo-api:$CIRCLE_BRANCH .
+      - run: docker tag campanhabrinquedo-api celonet.azurecr.io/campanhabrinquedo-api:$CIRCLE_BRANCH
+      - run: docker push celonet.azurecr.io/campanhabrinquedo-api:$CIRCLE_BRANCH
       - run:
           name: Deploy app to kubesail
           command: |
