@@ -1,0 +1,44 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+  generation: 3
+  labels:
+    run: campanhabrinquedo-api
+  name: campanhabrinquedo-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: campanhabrinquedo-api
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        run: campanhabrinquedo-api
+    spec:
+      containers:
+      - env:
+        - name: TZ
+          value: GMT
+        image: celonet/campanhabrinquedo:latest
+        imagePullPolicy: Always
+        name: campanhabrinquedo-api
+        resources:
+          # requests:
+          #   memory: "128Mi"
+          #   cpu: "100m"
+          # limits:
+          #   cpu: 200m
+          #   memory: 256Mi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30

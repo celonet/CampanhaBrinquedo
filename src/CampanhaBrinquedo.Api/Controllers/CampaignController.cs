@@ -1,4 +1,5 @@
 ﻿using CampanhaBrinquedo.Domain.Entities.Campaign;
+using CampanhaBrinquedo.Domain.Repositories;
 using CampanhaBrinquedo.Domain.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -10,15 +11,18 @@ using System.Threading.Tasks;
 
 namespace CampanhaBrinquedo.Api.Controllers
 {
+
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class CampaignController : ControllerBase
+    public class CampaignController : BaseController
     {
         private readonly ICampaignServiceApp _campaignService;
 
-        public CampaignController(ICampaignServiceApp campaignService) 
-            => _campaignService = campaignService;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public CampaignController(ICampaignServiceApp campaignService, IUserRepository userRepository, IHttpContextAccessor httpContextAccessor) 
+            : base(userRepository, httpContextAccessor) => _campaignService = campaignService;
 
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<Campaign>), 200)]
@@ -54,22 +58,24 @@ namespace CampanhaBrinquedo.Api.Controllers
             return Ok();
         }
 
-        [HttpPost("import")]
+        [HttpPost("import/{year}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(500)]
-        public async Task<IActionResult> Import(IFormFile file)
+        public async Task<IActionResult> Import([FromRoute]int year, IFormFile file)
         {
             if (file == null || file.Length == 0)
+            {
                 return BadRequest("invalid file");
+            }
 
             using (var ms = new MemoryStream())
             {
                 file.CopyTo(ms);
                 var fileBytes = ms.ToArray();
-               await _campaignService.ImportCampaign(fileBytes);
+                await _campaignService.ImportCampaign(year, fileBytes);
             }
-                    
+
             return Ok();
         }
 
@@ -83,6 +89,17 @@ namespace CampanhaBrinquedo.Api.Controllers
             return Ok();
         }
 
+        [HttpPut("status/{changestatus}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(500)]
+        public async Task<IActionResult> Put([FromRoute]string changestatus)
+        {
+            Enum.TryParse(changestatus, out CampaignState status);
+            var user = await GetUser();
+            await _campaignService.ChangeState(status, user);
+            return Ok();
+        }
 
         [HttpDelete]
         [ProducesResponseType(200)]

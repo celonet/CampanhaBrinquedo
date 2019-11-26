@@ -4,6 +4,6 @@ namespace Campanhabrinquedo.Data.MongoDb
 {
     public interface IDatabaseInitializer
     {
-        Task InitializeAsync();
+        void Initialize();
     }
 }

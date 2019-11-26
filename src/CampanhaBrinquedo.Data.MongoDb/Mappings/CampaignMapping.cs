@@ -12,6 +12,7 @@ namespace CampanhaBrinquedo.Data.MongoDb.Mappings
                 BsonClassMap.RegisterClassMap<Campaign>(cm =>
                 {
                     cm.AutoMap();
+                    cm.UnmapField(c => c.CampaignActionState);
                     cm.UnmapMember(c => c.State);
                 });
             }

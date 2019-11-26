@@ -8,10 +8,10 @@ namespace CampanhaBrinquedo.Domain.Entities.Campaign
         public int Year { get; private set; }
         public string Description { get; private set; }
         public int ChildrensQty { get; private set; }
-        public ICampaignActionState CampaignActionState { get; private set; }
+        public ICampaignActionState CampaignActionState => Enum.IsDefined(typeof(CampaignState), State) ? SetCampaignActionState(State) : new NotStarted();
         public CampaignState State { get; private set; }
 
-        protected Campaign() { }
+        protected Campaign() : base() { }
 
         public Campaign(int ano, string descricao)
         {
@@ -20,17 +20,23 @@ namespace CampanhaBrinquedo.Domain.Entities.Campaign
             Description = descricao;
             ChildrensQty = 0;
             State = CampaignState.NotStarted;
-            CampaignActionState = new NotStarted();
         }
 
-        public Campaign(int ano, string descricao, int qtdeCriancas)
+        public Campaign(int ano, string descricao, int qtdeCriancas) : base()
         {
             Id = Guid.NewGuid();
             Year = ano;
             Description = descricao;
             ChildrensQty = qtdeCriancas;
             State = CampaignState.NotStarted;
-            CampaignActionState = new NotStarted();
+        }
+
+        public Campaign(int ano, string descricao, int qtdeCriancas, string state) : base()
+        {
+            Year = ano;
+            Description = descricao;
+            ChildrensQty = qtdeCriancas;
+            State = Enum.Parse<CampaignState>(state);
         }
 
         public Campaign(Guid id, int ano, string descricao, int qtdeCriancas, string state)
@@ -40,7 +46,6 @@ namespace CampanhaBrinquedo.Domain.Entities.Campaign
             Description = descricao;
             ChildrensQty = qtdeCriancas;
             State = Enum.Parse<CampaignState>(state);
-            CampaignActionState = SetCampaignActionState(State);
         }
 
         public void IncreasesNumberOfChildren() => ChildrensQty++;
@@ -51,11 +56,7 @@ namespace CampanhaBrinquedo.Domain.Entities.Campaign
 
         public void Reopen(User.User user) => CampaignActionState.Reopen(this, user);
 
-        public void ChangeState(ICampaignActionState campaignState, CampaignState state)
-        {
-            CampaignActionState = campaignState;
-            State = state;
-        }
+        public void ChangeState(CampaignState state) => State = state;
 
         private ICampaignActionState SetCampaignActionState(CampaignState state)
         {
@@ -71,46 +72,5 @@ namespace CampanhaBrinquedo.Domain.Entities.Campaign
                     return new NotStarted();
             }
         }
-    }
-
-    public class CampaignInformation
-    {
-        public int Year { get; private set; }
-        public CampaignAnalitics CampaignAnalitics { get; private set; }
-        public GenderAnalitcs GenderAnalitcs { get; private set; }
-
-        public CampaignInformation(int year, CampaignAnalitics campaignAnalitics, GenderAnalitcs genderAnalitcs)
-        {
-            Year = year;
-            CampaignAnalitics = campaignAnalitics;
-            GenderAnalitcs = genderAnalitcs;
-        }
-    }
-
-    public class CampaignAnalitics
-    {
-        public int Capacity { get; set; }
-        public int ChildrenQty { get; set; }
-        public int GodFatherQty { get; set; }
-        public int CommunityQty { get; set; }
-
-        public CampaignAnalitics()
-        {
-
-        }
-
-        public CampaignAnalitics(int capacity, int childrenQty, int godFatherQty, int communityQty)
-        {
-            Capacity = capacity;
-            ChildrenQty = childrenQty;
-            GodFatherQty = godFatherQty;
-            CommunityQty = communityQty;
-        }
-    }
-
-    public struct GenderAnalitcs
-    {
-        public int MaleQty { get; set; }
-        public int FemaleQty { get; set; }
     }
 }

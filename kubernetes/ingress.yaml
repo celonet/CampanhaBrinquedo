@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: campanhabrinquedo-api
+  annotations:
+spec:
+  rules:
+  - host: celonet.usw1.kubesail.io
+    http:
+      paths:
+      - path: /api
+        backend:
+          serviceName: campanhabrinquedo-api
+          servicePort: 80

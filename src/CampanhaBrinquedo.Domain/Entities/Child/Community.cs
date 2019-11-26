@@ -7,18 +7,18 @@ namespace CampanhaBrinquedo.Domain.Entities.Child
         public string Name { get; private set; }
         public string Neighborhood { get; private set; }
 
-        protected Community() { }
-
-        public Community(Guid id, string name, string neighborhood)
+        public Community(int year, Guid id, string name, string neighborhood)
+            : base(year)
         {
-            this.Name = name;
-            this.Neighborhood = neighborhood;
+            Name = name;
+            Neighborhood = neighborhood;
         }
 
-        public Community(string name, string neighborhood)
+        public Community(int year, string name, string neighborhood)
+            : base(year)
         {
-            this.Name = name;
-            this.Neighborhood = neighborhood;
+            Name = name;
+            Neighborhood = neighborhood;
         }
     }
 }

@@ -8,22 +8,22 @@ namespace CampanhaBrinquedo.Domain.Entities.User
         public string Email { get; private set; }
         public string Password { get; private set; }
 
-        protected User() { }
+        protected User() : base() { }
 
-        public User(string name, string email, string password)
+        public User(string name, string email, string password) : base()
         {
-            this.Id = Guid.NewGuid();
-            this.Name = name;
-            this.Email = email;
-            this.Password = password;
+            Id = Guid.NewGuid();
+            Name = name;
+            Email = email;
+            Password = password;
         }
 
-        public User(Guid id, string name, string email, string password)
+        public User(Guid id, string name, string email, string password) : base()
         {
-            this.Id = id;
-            this.Name = name;
-            this.Email = email;
-            this.Password = password;
+            Id = id;
+            Name = name;
+            Email = email;
+            Password = password;
         }
     }
 }

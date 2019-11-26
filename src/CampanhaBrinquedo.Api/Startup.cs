@@ -28,6 +28,7 @@ namespace CampanhaBrinquedo.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services
+                .AddHttpContextAccessor()
                 .AddCors()
                 .RegisterDatabase()
                 .RegisterServices(Configuration)
@@ -44,8 +45,7 @@ namespace CampanhaBrinquedo.Api
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
+            loggerFactory.AddConsole(Configuration);
 
             if (env.IsDevelopment())
             {
