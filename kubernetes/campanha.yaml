@@ -25,8 +25,9 @@ spec:
       - env:
         - name: TZ
           value: GMT
-        image: celonet/campanhabrinquedo:latest
-        imagePullPolicy: Always
+        image: celonet.azurecr.io/campanhabrinquedo-api:latest
+        imagePullSecrets:
+          - name: regcred
         name: campanhabrinquedo-api
         resources:
           # requests:

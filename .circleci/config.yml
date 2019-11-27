@@ -1,4 +1,4 @@
-version: 2.0
+version: 2.1
 jobs:
   build:
     machine: true
@@ -11,7 +11,21 @@ jobs:
       - run: docker build -t campanhabrinquedo-api:$CIRCLE_BUILD_NUM .
       - run: docker tag campanhabrinquedo-api:$CIRCLE_BUILD_NUM celonet.azurecr.io/campanhabrinquedo-api:$CIRCLE_BUILD_NUM
       - run: docker push celonet.azurecr.io/campanhabrinquedo-api:$CIRCLE_BUILD_NUM
+  deploy:
+    steps:
       - run:
           name: Deploy app to kubesail
           command: |
             echo "deploy"
+
+workflows:
+  version: 2            
+  campanha_workflow:
+    jobs:
+      - build
+      - deploy:
+          requires: 
+            - build
+            
+orbs:
+  kubernetes: circleci/kubernetes@0.10.1
