@@ -8,9 +8,9 @@ jobs:
           name: Build and push Docker image
           command: |
             echo "$DOCKER_PASS" | docker login celonet.azurecr.io --username $DOCKER_USER --password-stdin
-      - run: docker build -t campanhabrinquedo-api:$CIRCLE_BRANCH .
-      - run: docker tag campanhabrinquedo-api celonet.azurecr.io/campanhabrinquedo-api:$CIRCLE_BRANCH
-      - run: docker push celonet.azurecr.io/campanhabrinquedo-api:$CIRCLE_BRANCH
+      - run: docker build -t campanhabrinquedo-api:$CIRCLE_BUILD_NUM .
+      - run: docker tag campanhabrinquedo-api:$CIRCLE_BUILD_NUM celonet.azurecr.io/campanhabrinquedo-api:$CIRCLE_BUILD_NUM
+      - run: docker push celonet.azurecr.io/campanhabrinquedo-api:$CIRCLE_BUILD_NUM
       - run:
           name: Deploy app to kubesail
           command: |
