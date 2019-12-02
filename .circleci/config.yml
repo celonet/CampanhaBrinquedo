@@ -17,6 +17,7 @@ jobs:
   deploy:
     machine: true
     steps:
+      - checkout
       - kube-orb/install
       - kube-orb/install-kubeconfig:
           kubeconfig: KUBECONFIG
