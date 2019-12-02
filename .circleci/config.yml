@@ -18,18 +18,12 @@ jobs:
     machine: true
     steps:
       - kube-orb/install-kubectl
-      # - kube-orb/install-kubeconfig:
-      #   kubeconfig: KUBECONFIG
-      # - kube-orb/create-or-update-resource:
-      # - run:
-      #     name: Deploy app to kubesail
-      #     command: |
-      #       ./kubectl \
-      #       --kubeconfig=/dev/null \
-      #       --server=$KUBERNETES_SERVER \
-      #       --certificate-authority=cert.crt \
-      #       --token=$KUBERNETES_TOKEN \
-      #       apply -f ./kubernetes/
+      - kube-orb/install-kubeconfig:
+        kubeconfig: KUBECONFIG
+      -run:
+        name: Deploy app to kubesail
+        command: |
+          kubectl apply -f ./kubernetes/
 
 workflows:
   version: 2            
