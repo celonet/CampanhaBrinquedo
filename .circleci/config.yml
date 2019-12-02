@@ -23,6 +23,7 @@ jobs:
       - run:
           name: Deploy app to kubesail
           command: |
+            echo "${KUBECONFIG}"
             kubectl apply -f ./kubernetes/
 
 workflows:
