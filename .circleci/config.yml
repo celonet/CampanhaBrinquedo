@@ -20,7 +20,7 @@ jobs:
       - kube-orb/install-kubectl
       - kube-orb/install-kubeconfig:
         kubeconfig: KUBECONFIG
-      -run:
+      - run:
         name: Deploy app to kubesail
         command: |
           kubectl apply -f ./kubernetes/
