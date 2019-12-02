@@ -19,8 +19,6 @@ jobs:
     steps:
       - checkout
       - kube-orb/install
-      - kube-orb/install-kubeconfig:
-          kubeconfig: KUBECONFIG
       - run:
           name: Deploy app to kubesail
           command: |
