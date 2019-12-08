@@ -28,7 +28,8 @@ jobs:
       - run: kubectl config set users.$CLUSTER_NAME.token "$KUBE_CLIENT_TOKEN"
       - run: kubectl config set-context $CLUSTER_NAME --namespace=$DOCKER_USER --cluster=$KUBE_CLUSTER_SERVER --user=$KUBE_CLUSTER_SERVER
       - run: kubectl config use-context $CLUSTER_NAME
-      - run: pwd && kubectl apply -f ./kubernetes/
+      - run: kubectl config view
+      - run: kubectl apply -f ./kubernetes/
 
 workflows:
   version: 2            
