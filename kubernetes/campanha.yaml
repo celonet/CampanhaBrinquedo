@@ -23,11 +23,14 @@ spec:
         run: campanhabrinquedo-api
     spec:
       containers:
-      - name: campanhabrinquedo-api
-        image: celonet.azurecr.io/campanhabrinquedo-api:latest
       - env:
         - name: TZ
           value: GMT
+        image: celonet.azurecr.io/campanhabrinquedo-api:latest
+        name: campanhabrinquedo-api
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
       imagePullSecrets:
         - name: regcred        
       dnsPolicy: ClusterFirst

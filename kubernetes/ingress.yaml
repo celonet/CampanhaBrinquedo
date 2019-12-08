@@ -2,7 +2,6 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: campanhabrinquedo-api
-  namespace: celonet
   annotations:
 spec:
   rules:
