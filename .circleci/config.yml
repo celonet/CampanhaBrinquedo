@@ -27,7 +27,7 @@ jobs:
       - run: kubectl config set users.$CLUSTER_NAME-admin.client-key-data "$KUBE_CLIENT_KEY"
       - run: kubectl config set-context $KUBE_CLUSTER_SERVER --namespace=$DOCKER_USER --cluster=$KUBE_CLUSTER_SERVER --user=$KUBE_CLUSTER_SERVER
       - run: kubectl config set-context $KUBE_CLUSTER_SERVER
-      - run: pwd && kubectl apply -f ./project/kubernetes/
+      - run: pwd && kubectl apply -f ./kubernetes/
 
 workflows:
   version: 2            
