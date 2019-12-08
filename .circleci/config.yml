@@ -26,7 +26,7 @@ jobs:
       - run: kubectl config set clusters.$CLUSTER_NAME.certificate-authority-data "$KUBE_CLUSTER_CERTIFICATE"
       - run: kubectl config set users.$CLUSTER_NAME.client-key-data "$KUBE_CLIENT_KEY"
       - run: kubectl config set users.$CLUSTER_NAME.token "$KUBE_CLIENT_TOKEN"
-      - run: kubectl config set-context $CLUSTER_NAME --namespace=$DOCKER_USER --cluster=$KUBE_CLUSTER_SERVER --user=$KUBE_CLUSTER_SERVER
+      - run: kubectl config set-context $CLUSTER_NAME --namespace=$DOCKER_USER --cluster=$CLUSTER_NAME --user=$CLUSTER_NAME
       - run: kubectl config use-context $CLUSTER_NAME
       - run: kubectl config view
       - run: kubectl apply -f ./kubernetes/
