@@ -25,6 +25,7 @@ jobs:
             kubectl config set clusters.$CLUSTER_NAME.server $KUBE_CLUSTER_SERVER
       - run: kubectl config set clusters.$CLUSTER_NAME.certificate-authority-data "$KUBE_CLUSTER_CERTIFICATE"
       - run: kubectl config set users.$CLUSTER_NAME-admin.client-key-data "$KUBE_CLIENT_KEY"
+      - run: kubectl config set-context $KUBE_CLUSTER_SERVER
       - run: kubectl apply -f ./project/kubernetes/
 
 workflows:
