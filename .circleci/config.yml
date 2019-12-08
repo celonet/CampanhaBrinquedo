@@ -18,13 +18,15 @@ jobs:
     machine: true
     steps:
       - checkout
+      - kube-orb/install
       - run:
           name: Deploy app to kubesail
           command: |
             kubectl config set clusters.$CLUSTER_NAME.server $KUBE_CLUSTER_SERVER
-            kubectl config set clusters.$CLUSTER_NAME.certificate-authority-data "$KUBE_CLUSTER_CERTIFICATE"
-            kubectl config set users.$CLUSTER_NAME-admin.client-key-data "$KUBE_CLIENT_KEY"
-            kubectl apply -f ./project/kubernetes/
+      - run: kubectl config set clusters.$CLUSTER_NAME.certificate-authority-data "$KUBE_CLUSTER_CERTIFICATE"
+      - run: kubectl config set users.$CLUSTER_NAME-admin.client-key-data "$KUBE_CLIENT_KEY"
+      - run: kubectl apply -f ./project/kubernetes/
+
 workflows:
   version: 2            
   campanha_workflow:
