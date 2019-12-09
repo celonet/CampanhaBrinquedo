@@ -39,7 +39,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CampanhaBrinquedo.Transport
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CampanhaBrinquedo.Api", "src\CampanhaBrinquedo.Api\CampanhaBrinquedo.Api.csproj", "{C1081EAC-77AA-46DE-8A02-3652AB8DD3C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CampanhaBrinquedo.Data.XmlImport", "CampanhaBrinquedo.Data.XmlImport\CampanhaBrinquedo.Data.XmlImport.csproj", "{5996A760-C308-41AC-94F5-44C467C281D6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CampanhaBrinquedo.Data.XmlImport", "src\CampanhaBrinquedo.Data.XmlImport\CampanhaBrinquedo.Data.XmlImport.csproj", "{5996A760-C308-41AC-94F5-44C467C281D6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

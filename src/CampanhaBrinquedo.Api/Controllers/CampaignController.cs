@@ -19,10 +19,11 @@ namespace CampanhaBrinquedo.Api.Controllers
     {
         private readonly ICampaignServiceApp _campaignService;
 
-        private readonly IHttpContextAccessor _httpContextAccessor;
-
-        public CampaignController(ICampaignServiceApp campaignService, IUserRepository userRepository, IHttpContextAccessor httpContextAccessor) 
-            : base(userRepository, httpContextAccessor) => _campaignService = campaignService;
+        public CampaignController(
+            ICampaignServiceApp campaignService, 
+            IUserRepository userRepository, 
+            IHttpContextAccessor httpContextAccessor
+        ) : base(userRepository, httpContextAccessor) => _campaignService = campaignService;
 
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<Campaign>), 200)]

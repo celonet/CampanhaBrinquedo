@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\CampanhaBrinquedo.Domain\CampanhaBrinquedo.Domain.csproj" />
+    <ProjectReference Include="..\CampanhaBrinquedo.Domain\CampanhaBrinquedo.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -43,9 +43,10 @@ namespace CampanhaBrinquedo.Api
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggingBuilder loggingBuilder)
         {
-            loggerFactory.AddConsole(Configuration);
+            loggingBuilder
+                .AddConsole();
 
             if (env.IsDevelopment())
             {
